@@ -3,6 +3,7 @@
 
 #include "avltree.h"
 
+// Calculate the height of the height of the node
 int get_node_height(struct node *treenode) {
 	int hl = 0, hr = 0;
 	if (treenode->left != NULL) {
@@ -17,6 +18,7 @@ int get_node_height(struct node *treenode) {
 	    return hr + 1;
 }
 
+// Calculate the balance of the node
 int get_node_balance(struct node *treenode){
 	int hl = 0;
 	int hr = 0;
@@ -29,6 +31,7 @@ int get_node_balance(struct node *treenode){
 	return hl - hr;
 }
 
+// Perform LL Rotation
 struct node *ll_rotate(struct node *treenode) {
 	struct node *ptr = treenode;
 	struct node *p = ptr->left;
@@ -60,6 +63,40 @@ struct node *ll_rotate(struct node *treenode) {
 	p->node_height = get_node_height(ptr);
 	return p;
 }
+
+// Perform RR Rotation
+struct node *rr_rotate(struct node *treenode) {
+	struct node *ptr = treenode;
+	struct node *p = ptr->right;
+	struct node *pleft = p->left;
+
+	if (ptr->parent != NULL) {
+		p->parent = ptr->parent;
+		if (ptr->parent->data > p->data) {
+			ptr->parent->left = p;
+		} else {
+			ptr->parent->right = p;
+		}
+	} else {
+		p->parent = NULL;
+	}
+
+	p->left = ptr;
+
+	if (pleft != NULL){
+	    pleft->parent = ptr;
+	    ptr->right = pleft;
+	} else {
+		ptr->right = NULL;
+	}
+	ptr->parent = p;
+
+	// height re-calculation after rotation
+	ptr->node_height = get_node_height(ptr);
+	p->node_height = get_node_height(ptr);
+	return p;
+}
+
 
 // Insert a new node
 struct node *insert_node(struct node *tree, int val, short *op_status) {
@@ -116,6 +153,11 @@ struct node *insert_node(struct node *tree, int val, short *op_status) {
 			if (parentptr->left && parentptr->data > ptr->data) {
 				printf("LL Rotation node: %d\n", parentptr->data);
 				parentptr = ll_rotate(parentptr);
+			}
+			// RR Rotation
+			else if (parentptr->right && parentptr->data < ptr->data) {
+				printf("RR Rotation node: %d\n", parentptr->data);
+				parentptr = rr_rotate(parentptr);
 			}
 		}
 		if (parentptr->parent == NULL) {
