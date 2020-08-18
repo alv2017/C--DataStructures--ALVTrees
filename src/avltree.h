@@ -12,4 +12,19 @@ struct node {
 // Operation Status
 short op_status;
 
+// LL Rotate
+struct node *ll_rotate(struct node * );
+
+// Insert New Node
+struct node *insert_node(struct node *, int, short *);
+
+// Pre-order traversal
+void preorder_traversal(struct node *);
+
+// Post-order traversal
+void postorder_traversal(struct node *);
+
+// In-order traversal
+void inorder_traversal(struct node *);
+
 #endif

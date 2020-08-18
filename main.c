@@ -42,12 +42,19 @@ int main(void) {
 		switch (opt) {
 			case 1:
 				clear();
-				puts("Inserting a node.");
+				puts("Inserting a node:");
+				int new_node_value = enter_value();
+				tree = insert_node(tree, new_node_value, &op_status);
+				if (op_status == 1) {
+					puts("New node has been inserted successfully!");
+				}
 				break;
 
 			case 2:
 				clear();
-				puts("Deleting a node.");
+				//puts("Deleting a node.");
+				puts("LL Rotate.");
+
 				break;
 
 			case 3:
@@ -67,17 +74,35 @@ int main(void) {
 
 			case 6:
 				clear();
-				puts("Pre-order traversal.");
+				puts("Pre-order traversal:");
+				if (tree==NULL) {
+					puts("The tree is empty.");
+				}
+				else {
+					preorder_traversal(tree);
+				}
 				break;
 
 			case 7:
 				clear();
-				puts("Post-order traversal.");
+				puts("Post-order traversal:");
+				if (tree==NULL) {
+					puts("The tree is empty.");
+				}
+				else {
+					postorder_traversal(tree);
+				}
 				break;
 
 			case 8:
 				clear();
-				puts("In-order traversal.");
+				puts("In-order traversal:");
+				if (tree==NULL) {
+					puts("The tree is empty.");
+				}
+				else {
+					postorder_traversal(tree);
+				}
 				break;
 
 			case 9:
