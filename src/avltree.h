@@ -39,6 +39,9 @@ struct node *lr_rotate(struct node *treenode);
 // Perform RL Rotation
 struct node *rl_rotate(struct node *treenode);
 
+// Find node by value
+struct node *find_node(struct node *, int );
+
 // Insert New Node
 struct node *insert_node(struct node *, int, short *);
 

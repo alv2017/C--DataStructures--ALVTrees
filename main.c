@@ -59,7 +59,22 @@ int main(void) {
 
 			case 3:
 				clear();
-				puts("Find node by value.");
+				puts("Searching a node by value.");
+				puts("Enter the value of a node you are looking for.");
+				int search_value = enter_value();
+				struct node *found_node = find_node(tree, search_value);
+				if (found_node != NULL) {
+					int parent_value = (found_node->parent == NULL)? 0:found_node->parent->data;
+					int left_value = (found_node->left == NULL)? 0:found_node->left->data;
+					int right_value = (found_node->right == NULL)? 0:found_node->right->data;
+					int node_balance = get_node_balance(found_node);
+
+
+					printf("The node with the value %d is found: \n", search_value);
+					printf("Node: %d; Parent: %d; Left: %d; Right: %d; Height: %d; Balance: %d.\n",
+									found_node->data, parent_value, left_value, right_value,
+									found_node->node_height, node_balance);
+				}
 				break;
 
 			case 4:
