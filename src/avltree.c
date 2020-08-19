@@ -21,7 +21,7 @@ struct node *insert_node(struct node *tree, int val, short *op_status) {
 		else {
 			puts("Node insertion rejected.");
 		    printf("Duplicate node value. The node having value %d already exists.", val);
-			return NULL;
+			return tree;
 		}
 	}
 	ptr = (struct node *) malloc(sizeof(struct node));
