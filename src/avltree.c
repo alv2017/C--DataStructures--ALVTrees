@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 #include "avltree.h"
 
 // Calculate the height of the height of the node
@@ -47,9 +46,7 @@ struct node *ll_rotate(struct node *treenode) {
 	} else {
 		p->parent = NULL;
 	}
-
 	p->right = ptr;
-
 	if (pright != NULL){
 	    pright->parent = ptr;
 	    ptr->left = pright;
@@ -80,9 +77,7 @@ struct node *rr_rotate(struct node *treenode) {
 	} else {
 		p->parent = NULL;
 	}
-
 	p->left = ptr;
-
 	if (pleft != NULL){
 	    pleft->parent = ptr;
 	    ptr->right = pleft;
@@ -115,19 +110,16 @@ struct node *lr_rotate(struct node *treenode) {
 	} else {
 		p->parent = NULL;
 	}
-
 	p->left = ptr_left;
 	ptr_left->parent = p;
 	p->right = ptr;
 	ptr->parent = p;
-
 	if (pleft != NULL) {
 		ptr_left->right = pleft;
 		pleft->parent = ptr_left;
 	} else {
 		ptr_left->right = NULL;
 	}
-
 	if (pright != NULL) {
 		ptr->left = pright;
 		pright->parent = ptr;
@@ -161,19 +153,16 @@ struct node *rl_rotate(struct node *treenode) {
 	} else {
 		p->parent = NULL;
 	}
-
 	p->left = ptr;
 	ptr->parent = p;
 	p->right = ptr_right;
 	ptr->right->parent = p;
-
 	if (pleft != NULL) {
 		ptr->right = pleft;
 		pleft->parent = ptr;
 	} else {
 		ptr->right = NULL;
 	}
-
 	if (pright != NULL) {
 		ptr_right->left = pright;
 		pright->parent = ptr_right;
@@ -210,13 +199,11 @@ struct node *insert_node(struct node *tree, int val, short *op_status) {
 			return NULL;
 		}
 	}
-
 	ptr = (struct node *) malloc(sizeof(struct node));
 	if (ptr == NULL) {
 		puts("Unable to create a new node. Memory allocation error.");
 		return tree;
 	}
-
 	*op_status = 1;
 	ptr->data = val;
 	ptr->node_height = 1;
@@ -228,7 +215,6 @@ struct node *insert_node(struct node *tree, int val, short *op_status) {
 		tree = ptr;
 		return tree;
 	}
-
 	if (val < parentptr->data) {
 		parentptr->left = ptr;
 	} else {
@@ -289,7 +275,6 @@ void preorder_traversal(struct node *tree) {
 		printf("Node: %d; Parent: %d; Left: %d; Right: %d; Height: %d; Balance: %d.\n",
 				ptr->data, parent_value, left_value, right_value,
 				ptr->node_height, node_balance);
-		getchar();
 		preorder_traversal(ptr->left);
 		preorder_traversal(ptr->right);
 	}
@@ -308,7 +293,6 @@ void postorder_traversal(struct node *tree) {
 		int node_balance = get_node_balance(ptr);
 		printf("Node: %d; Parent: %d; Height: %d; Balance: %d.\n",
 				ptr->data, parent_value, ptr->node_height, node_balance);
-		getchar();
 	}
 }
 
@@ -327,9 +311,3 @@ void inorder_traversal(struct node *tree) {
 		inorder_traversal(ptr->right);
 	}
 }
-
-
-
-
-
-
