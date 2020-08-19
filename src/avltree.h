@@ -12,12 +12,6 @@ struct node {
 // Operation Status
 short op_status;
 
-// LL Rotate
-struct node *ll_rotate(struct node * );
-
-// RR Rotate
-struct node *rr_rotate(struct node * );
-
 // Insert New Node
 struct node *insert_node(struct node *, int, short *);
 
