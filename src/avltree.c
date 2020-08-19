@@ -80,3 +80,30 @@ struct node *insert_node(struct node *tree, int val, short *op_status) {
 	}
 	return tree;
 }
+
+// Find node by value
+struct node *find_node(struct node *tree, int value) {
+	struct node *ptr = tree;
+
+	if (tree == NULL) {
+		printf("Unable to find the node with value %d: The tree is empty.", value);
+		return NULL;
+	}
+
+	while (ptr != NULL) {
+		if (ptr->data < value) {
+			ptr = ptr->right;
+		}
+		else if (ptr->data > value) {
+			ptr = ptr->left;
+		}
+		else {
+			return ptr;
+		}
+	}
+	printf("Unable to find the node with value %d.\n", value);
+	return NULL;
+}
+
+
+
