@@ -143,6 +143,51 @@ struct node *lr_rotate(struct node *treenode) {
 	return p;
 }
 
+// Perform RL Rotation
+struct node *rl_rotate(struct node *treenode) {
+	struct node *ptr = treenode;
+	struct node *ptr_right = treenode->right;
+	struct node *p = treenode->right->left;
+	struct node *pleft = p->left;
+	struct node *pright = p->right;
+
+	if (ptr->parent != NULL) {
+		p->parent = ptr->parent;
+		if (ptr->parent->data > p->data) {
+			ptr->parent->left = p;
+		} else {
+			ptr->parent->right = p;
+		}
+	} else {
+		p->parent = NULL;
+	}
+
+	p->left = ptr;
+	ptr->parent = p;
+	p->right = ptr_right;
+	ptr->right->parent = p;
+
+	if (pleft != NULL) {
+		ptr->right = pleft;
+		pleft->parent = ptr;
+	} else {
+		ptr->right = NULL;
+	}
+
+	if (pright != NULL) {
+		ptr_right->left = pright;
+		pright->parent = ptr_right;
+	} else {
+		ptr_right->left = NULL;
+	}
+
+	// height re-calculation after rotation
+	ptr->node_height = get_node_height(ptr);
+	ptr_right->node_height = get_node_height(ptr_right);
+	p->node_height = get_node_height(p);
+
+	return p;
+}
 
 // Insert a new node
 struct node *insert_node(struct node *tree, int val, short *op_status) {
@@ -209,6 +254,11 @@ struct node *insert_node(struct node *tree, int val, short *op_status) {
 			else if (parentptr->left && parentptr->data > ptr->data && parentptr->left->data < ptr->data) {
 				printf("LR Rotation node: %d\n", parentptr->data);
 				parentptr = lr_rotate(parentptr);
+			}
+			// RL Rotation
+			else if (parentptr->right && parentptr->data < ptr->data && parentptr->right->data > ptr->data) {
+				printf("RL Rotation node: %d\n", parentptr->data);
+				parentptr = rl_rotate(parentptr);
 			}
 		}
 		if (parentptr->parent == NULL) {
