@@ -48,6 +48,15 @@ struct node *find_smallest(struct node *);
 // Find node with the largest value
 struct node *find_largest(struct node *tree);
 
+// Count tree nodes
+long count_nodes(struct node *subtree);
+
+// Count internal nodes
+long count_internal_nodes(struct node *subtree);
+
+// Count external tree nodes
+long count_external_nodes(struct node *subtree);
+
 // Insert New Node
 struct node *insert_node(struct node *, int, short *);
 
