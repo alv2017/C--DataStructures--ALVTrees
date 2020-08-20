@@ -105,5 +105,18 @@ struct node *find_node(struct node *tree, int value) {
 	return NULL;
 }
 
+// Find node with the smallest value
+struct node *find_smallest(struct node *tree) {
+	struct node *ptr;
+	ptr = tree;
+
+	if (ptr == NULL || ptr->left == NULL) {
+		return ptr;
+	} else {
+		return find_smallest(tree->left);
+	}
+	return ptr;
+}
+
 
 
