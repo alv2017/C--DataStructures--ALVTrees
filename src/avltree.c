@@ -128,5 +128,48 @@ struct node *find_largest(struct node *tree) {
 	}
 }
 
+// Count tree nodes
+long count_nodes(struct node *subtree) {
+	if (subtree == NULL) {
+		return 0;
+	}
+	else {
+		return count_nodes(subtree->left) + count_nodes(subtree->right) + 1;
+	}
+}
+
+// Count internal tree nodes
+long count_internal_nodes(struct node *subtree) {
+	if (subtree == NULL) {
+		return 0;
+	}
+	else if (subtree->left == NULL && subtree->right == NULL) {
+		return 0;
+	}
+	else {
+		return count_internal_nodes(subtree->left) + count_internal_nodes(subtree->right) + 1;
+	}
+}
+
+// Count external tree nodes
+long count_external_nodes(struct node *subtree) {
+	if (subtree == NULL) {
+		return 0;
+	}
+	else if (subtree->left == NULL && subtree->right == NULL) {
+		return 1;
+	}
+	else {
+		return count_external_nodes(subtree->left) + count_external_nodes(subtree->right);
+	}
+}
+
+
+
+
+
+
+
+
 
 
