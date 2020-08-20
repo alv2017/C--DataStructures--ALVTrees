@@ -79,7 +79,22 @@ int main(void) {
 
 			case 4:
 				clear();
-				puts("Find the smallest node value.");
+				puts("Find the node with the smallest value.");
+				struct node *smallest_node = find_smallest(tree);
+				if (tree == NULL) {
+					puts("The tree is empty.");
+				} else {
+					int parent_value = (smallest_node->parent == NULL)? 0:smallest_node->parent->data;
+					int left_value = (smallest_node->left == NULL)? 0:smallest_node->left->data;
+					int right_value = (smallest_node->right == NULL)? 0:smallest_node->right->data;
+					int node_balance = get_node_balance(smallest_node);
+
+					puts("The smallest node has been found:");
+					printf("Node: %d; Parent: %d; Left: %d; Right: %d; Height: %d; Balance: %d.\n",
+							smallest_node->data, parent_value, left_value, right_value,
+							smallest_node->node_height, node_balance);
+
+				}
 				break;
 
 			case 5:
