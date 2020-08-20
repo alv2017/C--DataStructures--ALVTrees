@@ -164,6 +164,22 @@ long count_external_nodes(struct node *subtree) {
 	}
 }
 
+// Tree Height
+int get_tree_height(struct node *subtree) {
+	if (subtree == NULL) {
+		return 0;
+	}
+	else {
+		int leftHeight = get_tree_height(subtree->left);
+		int rightHeight = get_tree_height(subtree->right);
+		if (leftHeight > rightHeight) {
+			return leftHeight + 1;
+		}
+		else {
+			return rightHeight + 1;
+		}
+	}
+}
 
 
 
