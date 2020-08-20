@@ -45,6 +45,9 @@ struct node *find_node(struct node *, int );
 // Find the node with the smallest value
 struct node *find_smallest(struct node *);
 
+// Find node with the largest value
+struct node *find_largest(struct node *tree);
+
 // Insert New Node
 struct node *insert_node(struct node *, int, short *);
 
