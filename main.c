@@ -79,7 +79,7 @@ int main(void) {
 
 			case 4:
 				clear();
-				puts("Find the node with the smallest value.");
+				puts("Find node with the smallest value.");
 				struct node *smallest_node = find_smallest(tree);
 				if (tree == NULL) {
 					puts("The tree is empty.");
