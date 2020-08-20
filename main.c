@@ -180,6 +180,12 @@ int main(void) {
 			case 13:
 				clear();
 				puts("Displaying the root node of the tree.");
+				int root_left_value = (tree->left == NULL)? 0:tree->left->data;
+				int root_right_value = (tree->right == NULL)? 0:tree->right->data;
+				int root_balance = get_node_balance(tree);
+				printf("Node: %d; Parent: %d; Left: %d; Right: %d; Height: %d; Balance: %d.\n",
+											tree->data, 0, root_left_value, root_right_value,
+											tree->node_height, root_balance);
 				break;
 
 			case 14:
