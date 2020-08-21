@@ -193,10 +193,14 @@ int main(void) {
 			case 14:
 				clear();
 				puts("Deleting a tree.");
+				tree = delete_tree(tree);
 				break;
 
 			case 15:
 				clear();
+				if (tree){
+					tree = delete_tree(tree);
+				}
 				puts("Exiting the Program.");
 				return 0;
 		}
