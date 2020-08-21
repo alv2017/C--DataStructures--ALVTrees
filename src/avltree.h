@@ -57,10 +57,13 @@ long count_internal_nodes(struct node *subtree);
 // Count external tree nodes
 long count_external_nodes(struct node *subtree);
 
+// Tree Height
+int get_tree_height(struct node *subtree);
+
 // Insert New Node
 struct node *insert_node(struct node *, int, short *);
 
-// Tree Height
-int get_tree_height(struct node *subtree);
+// Delete Tree
+struct node *delete_tree(struct node *);
 
 #endif
