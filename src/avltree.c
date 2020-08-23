@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "avltree.h"
 
-
 // Insert a new node
 struct node *insert_node(struct node *tree, int val, short *op_status) {
 	*op_status = 0;

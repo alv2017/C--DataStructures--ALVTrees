@@ -52,8 +52,15 @@ int main(void) {
 
 			case 2:
 				clear();
-				//puts("Deleting a node.");
-				puts("LL Rotate.");
+				puts("Deleting a node.");
+				int delete_value = enter_value();
+				tree = delete_node(tree, delete_value, &op_status);
+
+				if (op_status == 1) {
+					printf("Node with the value %d has been deleted.\n", delete_value);
+				} else {
+					puts("Deletion operation has been cancelled.");
+				}
 
 				break;
 
@@ -163,7 +170,6 @@ int main(void) {
 				long total_internal_nodes = count_internal_nodes(tree);
 				printf("The number of internal tree nodes is %ld.\n", total_internal_nodes);
 				break;
-
 
 			case 11:
 				clear();
