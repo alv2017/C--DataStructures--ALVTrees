@@ -49,8 +49,10 @@ struct node *delete_node(struct node *subtree, int value, short *op_status) {
 			}
 			else if (parent->data >= ptr->data){
 				parent->left = ptr->right;
+				parent->left->parent = parent;
 			} else if (parent->data < ptr->data){
 				parent->right = ptr->right;
+				parent->right->parent = parent;
 			}
 		}
 		else if (ptr->right == NULL) {
@@ -60,8 +62,10 @@ struct node *delete_node(struct node *subtree, int value, short *op_status) {
 			}
 			else if (parent->data >= ptr->data){
 				parent->left = ptr->left;
+				parent->left->parent = parent;
 			} else if (parent->data < ptr->data){
 				parent->right = ptr->left;
+				parent->right->parent = parent;
 			}
 		}
 		*op_status = 1;
