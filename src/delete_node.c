@@ -5,15 +5,15 @@
 // Deleting a node
 struct node *delete_node(struct node *subtree, int value, short *op_status) {
 	*op_status = 0;
-	if (subtree==NULL) {
-		printf("The node with the value %d was not found.\n", value);
-		return subtree;
-	}
+
 	struct node *ptr = subtree;
 	struct node *tmp = NULL;
 	struct node *parent = NULL;
 
-	if (ptr->data > value) {
+	if (ptr==NULL) {
+		printf("The node with the value %d was not found.\n", value);
+	}
+	else if (ptr->data > value) {
 		ptr = delete_node(ptr->left, value, op_status);
 	}
 	else if (ptr->data < value) {
@@ -70,20 +70,37 @@ struct node *delete_node(struct node *subtree, int value, short *op_status) {
 		}
 		*op_status = 1;
 		free(ptr);
-		// Update node heights and rebalance
+		int node_balance = 0;
+		int child_balance = 0;
 		while (parent != NULL) {
 			parent->node_height = get_node_height(parent);
-			int node_balance = get_node_balance(parent);
+			node_balance = get_node_balance(parent);
 			if (abs(node_balance) > 1) {
-				if (value < parent->data) {
-					puts("Right rotation needed.");
+				if (value > parent->data) {
+					child_balance = get_node_balance(parent->left);
+					if (child_balance == 1) {
+						parent = ll_rotate(parent);
+					}
+					else if (child_balance == -1 || child_balance == 0) {
+						parent = lr_rotate(parent);
+					}
 				}
-				else if (value > parent->data) {
-					puts("Left rotation needed.");
+				else if (value < parent->data) {
+					child_balance = get_node_balance(parent->right);
+					if (child_balance == -1) {
+						parent = rr_rotate(parent);
+					}
+					else if (child_balance == 0 || child_balance == 1){
+						parent = rl_rotate(parent);
+					}
 				}
 			}
 			parent = parent->parent;
 		}
+	}
+
+	while (subtree->parent != NULL) {
+		subtree = subtree->parent;
 	}
 	return subtree;
 }

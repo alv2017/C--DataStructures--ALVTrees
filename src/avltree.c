@@ -2,6 +2,27 @@
 #include <stdlib.h>
 #include "avltree.h"
 
+// Print node data
+void print_node(struct node *pnode) {
+	int data = 0;
+	int pnode_parent = 0;
+	int pnode_left = 0;
+	int pnode_right = 0;
+	if (pnode != NULL){
+		data = pnode->data;
+		if (pnode->parent != NULL) {
+			pnode_parent = pnode->parent->data;
+		}
+		if (pnode->left != NULL) {
+			pnode_left = pnode->left->data;
+		}
+		if (pnode->right != NULL) {
+			pnode_left = pnode->right->data;
+		}
+	}
+	printf("Node: %d; Parent: %d; Left: %d; Right: %d.\n", data, pnode_parent, pnode_left, pnode_right);
+}
+
 // Find node by value
 struct node *find_node(struct node *tree, int value) {
 	struct node *ptr = tree;
