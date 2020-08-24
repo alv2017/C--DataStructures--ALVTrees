@@ -99,8 +99,10 @@ struct node *delete_node(struct node *subtree, int value, short *op_status) {
 		}
 	}
 
-	while (subtree->parent != NULL) {
-		subtree = subtree->parent;
+	if (subtree != NULL) {
+		while (subtree->parent != NULL) {
+			subtree = subtree->parent;
+		}
 	}
 	return subtree;
 }
