@@ -40,6 +40,8 @@ struct node *insert_node(struct node *tree, int val, short *op_status) {
 		} else {
 			parentptr->right = ptr;
 		}
+	} else {
+		ptr->parent = NULL;
 	}
 
 	if (tree == NULL) {
@@ -73,10 +75,7 @@ struct node *insert_node(struct node *tree, int val, short *op_status) {
 				parentptr = rl_rotate(parentptr);
 			}
 		}
-		if (parentptr->parent == NULL) {
-			parentptr->node_height = get_node_height(parentptr);
-			tree = parentptr;
-		}
+		tree = parentptr;
 		parentptr = parentptr->parent;
 	}
 	return tree;
