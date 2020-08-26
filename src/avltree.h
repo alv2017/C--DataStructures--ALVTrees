@@ -69,7 +69,7 @@ struct node *delete_tree(struct node *);
 // Insert New Node
 struct node *insert_node(struct node *, int, short *);
 
-// Delete Node
-struct node *delete_node(struct node *, int, short *);
+// Delete AVL Node
+struct node *delete_avl_node(struct node *, int, short *);
 
 #endif

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "avltree.h"
 
-// Deleting a node
+// Deleting a node: helper function
 struct node *delete_node(struct node *subtree, int value, short *op_status) {
 	*op_status = 0;
 
@@ -95,15 +95,27 @@ struct node *delete_node(struct node *subtree, int value, short *op_status) {
 					}
 				}
 			}
+			subtree = parent;
 			parent = parent->parent;
-		}
-	}
-
-	if (subtree != NULL) {
-		while (subtree->parent != NULL) {
-			subtree = subtree->parent;
 		}
 	}
 	return subtree;
 }
+
+// Delete AVL-tree node
+struct node *delete_avl_node(struct node *subtree, int value, short *op_status) {
+	*op_status = 0;
+	struct node *avl_node = delete_node(subtree, value, op_status);
+	if (avl_node != NULL) {
+		while (avl_node->parent != NULL) {
+			avl_node = avl_node->parent;
+		}
+	}
+	return avl_node;
+}
+
+
+
+
+
 

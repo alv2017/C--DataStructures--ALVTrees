@@ -54,7 +54,7 @@ int main(void) {
 				clear();
 				puts("Deleting a node.");
 				int delete_value = enter_value();
-				tree = delete_node(tree, delete_value, &op_status);
+				tree = delete_avl_node(tree, delete_value, &op_status);
 
 				if (op_status == 1) {
 					printf("Node with the value %d has been deleted.\n", delete_value);
