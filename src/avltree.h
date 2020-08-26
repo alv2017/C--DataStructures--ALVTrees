@@ -12,6 +12,9 @@ struct node {
 // Operation Status
 short op_status;
 
+// Print node data
+void print_node(struct node *);
+
 // Get node height
 int get_node_height(struct node *);
 
